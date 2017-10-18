@@ -174,7 +174,7 @@ func startTLS(c *client, addr string) (bool, error) {
 		return false, err
 	}
 
-	if err := c.StartTLS(&tls.Config{ServerName: host}); err != nil {
+	if err := c.StartTLS(&tls.Config{ServerName: host, InsecureSkipVerify: true}); err != nil {
 		return false, err
 	}
 
