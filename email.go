@@ -302,6 +302,9 @@ func writeMessage(buff *bytes.Buffer, msg []byte, multipart bool, mediaType stri
 	if _, err := qp.Write(msg); err != nil {
 		return err
 	}
+
+	//FixMe
+	fmt.Println(buff.String())
 	return qp.Close()
 }
 
