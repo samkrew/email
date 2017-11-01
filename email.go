@@ -303,8 +303,6 @@ func writeMessage(buff *bytes.Buffer, msg []byte, multipart bool, mediaType stri
 		return err
 	}
 
-	//FixMe
-	fmt.Println(buff.String())
 	return qp.Close()
 }
 
@@ -326,6 +324,8 @@ func (e *Email) Bytes() ([]byte, error) {
 	var w *multipart.Writer
 	if isMixed || isAlternative {
 		w = multipart.NewWriter(buff)
+	} else {
+		headers.Set("Content-Transfer-Encoding", "quoted-printable")
 	}
 	switch {
 	case isMixed:
